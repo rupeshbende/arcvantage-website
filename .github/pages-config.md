@@ -9,7 +9,7 @@ The repository is configured with the following GitHub Pages settings:
 - **Source**: Deploy from a branch
 - **Branch**: main
 - **Folder**: / (root)
-- **Custom domain**: arcvantage-design.com
+- **Custom domain**: www.arcvantagedesignstudios.in
 - **HTTPS enforcement**: Enabled
 - **Jekyll processing**: Disabled (via .nojekyll file)
 
