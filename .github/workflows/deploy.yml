@@ -1,0 +1,93 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set this to your default branch
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      # Optional: Set up caching for better performance
+      - name: Cache assets
+        uses: actions/cache@v3
+        with:
+          path: |
+            images
+            css
+            js
+          key: ${{ runner.os }}-assets-${{ hashFiles('**/*.jpg', '**/*.png', '**/*.css', '**/*.js') }}
+          restore-keys: |
+            ${{ runner.os }}-assets-
+      
+      # Validate HTML files
+      - name: Validate HTML
+        run: |
+          echo "Validating HTML files..."
+          # This is a simple check for HTML syntax errors
+          # For production, consider using a proper HTML validator
+          find . -name "*.html" -exec cat {} \; | grep -n "<\/[a-z]*[A-Z]" || echo "No HTML errors found"
+      
+      # Verify critical files exist
+      - name: Verify GitHub Pages requirements
+        run: |
+          echo "Verifying GitHub Pages requirements..."
+          if [ ! -f "index.html" ]; then
+            echo "Error: index.html not found in root directory"
+            exit 1
+          fi
+          if [ ! -f ".nojekyll" ]; then
+            echo "Creating .nojekyll file"
+            touch .nojekyll
+          fi
+          if [ ! -f "404.html" ]; then
+            echo "Warning: 404.html not found. Using default GitHub Pages 404 page."
+          fi
+          echo "GitHub Pages requirements verified."
+      
+      # Optimize images
+      - name: Check image sizes
+        run: |
+          echo "Checking image sizes..."
+          find ./images -type f -name "*.jpg" -o -name "*.png" -exec du -h {} \; | sort -hr | head -n 10
+        continue-on-error: true
+      
+      # Verify custom domain configuration
+      - name: Verify custom domain
+        run: |
+          echo "Verifying custom domain configuration..."
+          if [ -f "CNAME" ]; then
+            echo "Custom domain configured: $(cat CNAME)"
+          else
+            echo "No custom domain configured."
+          fi
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+      - name: Deployment status
+        run: |
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "HTTPS enforced: Yes"
+          echo "Deployment complete!"

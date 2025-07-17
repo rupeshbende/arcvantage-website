@@ -1,0 +1,26 @@
+{
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "Arc Haven Residence",
+      "category": "residential",
+      "description": "A modern family home featuring arc-integrated living spaces that maximize natural light.",
+      "fullDescription": "This residential project showcases our signature arc-based design philosophy, creating flowing spaces that connect seamlessly with the natural environment. The central living area features a dramatic curved ceiling that draws the eye upward while allowing natural light to cascade throughout the space.",
+      "images": ["project1-main.jpg", "project1-interior.jpg", "project1-detail.jpg"],
+      "completionDate": "2024-03-15",
+      "location": "Lakeside, CA",
+      "features": ["Arc-integrated ceiling", "Natural lighting optimization", "Open concept living spaces"]
+    },
+    {
+      "id": "project-2",
+      "title": "Serenity Commercial Plaza",
+      "category": "commercial",
+      "description": "A commercial space designed with arc elements to create a calming work environment.",
+      "fullDescription": "This commercial project reimagines the traditional office space by incorporating gentle arcs throughout the design. From the reception area to meeting rooms, curved walls and ceilings create a sense of flow and reduce stress in the workplace.",
+      "images": ["project2-main.jpg", "project2-interior.jpg", "project2-detail.jpg"],
+      "completionDate": "2023-11-10",
+      "location": "Downtown Metro",
+      "features": ["Arc-based partitions", "Curved reception desk", "Flowing workspace layout"]
+    }
+  ]
+}

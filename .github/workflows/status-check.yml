@@ -1,0 +1,38 @@
+name: GitHub Pages Status Check
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'  # Run every 12 hours
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check website availability
+        run: |
+          echo "Checking website availability..."
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://arcvantage-design.com/)
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "Website is up and running! Status code: $HTTP_STATUS"
+          else
+            echo "Website might be down. Status code: $HTTP_STATUS"
+            exit 1
+          fi
+      
+      - name: Check HTTPS configuration
+        run: |
+          echo "Checking HTTPS configuration..."
+          REDIRECT=$(curl -s -o /dev/null -w "%{redirect_url}" http://arcvantage-design.com/)
+          if [[ $REDIRECT == *"https://"* ]]; then
+            echo "HTTPS redirection is working correctly!"
+          else
+            echo "HTTPS redirection might not be working properly."
+            exit 1
+          fi
+      
+      - name: Send notification on failure
+        if: failure()
+        run: |
+          echo "Website status check failed. Please check the GitHub Pages deployment."
+          # Add notification mechanism here if needed (e.g., email, Slack)

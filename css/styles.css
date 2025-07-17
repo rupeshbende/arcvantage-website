@@ -1,0 +1,557 @@
+/* 
+ * ArcVantage Design Studios - Main Stylesheet
+ * Comprehensive design system with CSS variables, typography, and spacing
+ */
+
+/* ======================================
+   CSS Variables for Design System
+   ====================================== */
+:root {
+    /* Color Palette */
+    --primary-color: #1a365d;    /* Deep Navy */
+    --primary-light: #2c4c7c;    /* Lighter Navy */
+    --primary-dark: #0f2342;     /* Darker Navy */
+    
+    --secondary-color: #d69e2e;  /* Warm Gold */
+    --secondary-light: #e6b94d;  /* Lighter Gold */
+    --secondary-dark: #b78519;   /* Darker Gold */
+    
+    --accent-color: #38b2ac;     /* Soft Teal */
+    --accent-light: #4fd1cb;     /* Lighter Teal */
+    --accent-dark: #2c8f8a;      /* Darker Teal */
+    
+    --neutral-color: #f7fafc;    /* Light Gray */
+    --neutral-dark: #e2e8f0;     /* Medium Gray */
+    --neutral-darker: #cbd5e0;   /* Darker Gray */
+    
+    --text-color: #2d3748;       /* Charcoal */
+    --text-light: #4a5568;       /* Light Charcoal */
+    --text-lighter: #718096;     /* Even Lighter */
+    
+    --white: #ffffff;
+    --black: #000000;
+    --error: #e53e3e;            /* Error Red */
+    --success: #38a169;          /* Success Green */
+    
+    /* Typography */
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Open Sans', sans-serif;
+    --accent-font: 'Playfair Display', serif;
+    
+    /* Font Sizes */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-md: 1.125rem;   /* 18px */
+    --text-lg: 1.25rem;    /* 20px */
+    --text-xl: 1.5rem;     /* 24px */
+    --text-2xl: 1.875rem;  /* 30px */
+    --text-3xl: 2.25rem;   /* 36px */
+    --text-4xl: 3rem;      /* 48px */
+    --text-5xl: 3.75rem;   /* 60px */
+    
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    
+    /* Spacing System */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 1rem;     /* 16px */
+    --spacing-md: 2rem;     /* 32px */
+    --spacing-lg: 4rem;     /* 64px */
+    --spacing-xl: 8rem;     /* 128px */
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;   /* 4px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 1rem;      /* 16px */
+    --radius-full: 9999px;  /* Fully rounded */
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Z-index layers */
+    --z-base: 1;
+    --z-above: 10;
+    --z-modal: 100;
+    --z-overlay: 1000;
+    --z-highest: 9999;
+}
+
+/* ======================================
+   Basic Reset & Global Styles
+   ====================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* ======================================
+   Typography System
+   ====================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: var(--font-bold);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-md);
+}
+
+h2 {
+    font-size: var(--text-3xl);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: var(--radius-full);
+}
+
+h3 {
+    font-size: var(--text-xl);
+}
+
+h4 {
+    font-size: var(--text-lg);
+}
+
+h5 {
+    font-size: var(--text-md);
+}
+
+h6 {
+    font-size: var(--text-base);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--text-base);
+}
+
+.text-accent {
+    font-family: var(--accent-font);
+    font-style: italic;
+}
+
+.text-sm {
+    font-size: var(--text-sm);
+}
+
+.text-lg {
+    font-size: var(--text-lg);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-accent-color {
+    color: var(--accent-color);
+}
+
+.text-light {
+    color: var(--text-light);
+}
+
+.font-light {
+    font-weight: var(--font-light);
+}
+
+.font-medium {
+    font-weight: var(--font-medium);
+}
+
+.font-bold {
+    font-weight: var(--font-bold);
+}
+
+/* ======================================
+   Layout & Container System
+   ====================================== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.section {
+    padding: var(--spacing-lg) 0;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header p {
+    color: var(--text-light);
+    font-size: var(--text-lg);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-header h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+/* Flex Utilities */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.gap-sm {
+    gap: var(--spacing-sm);
+}
+
+.gap-md {
+    gap: var(--spacing-md);
+}
+
+/* Spacing Utilities */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.py-xs { padding-top: var(--spacing-xs); padding-bottom: var(--spacing-xs); }
+.py-sm { padding-top: var(--spacing-sm); padding-bottom: var(--spacing-sm); }
+.py-md { padding-top: var(--spacing-md); padding-bottom: var(--spacing-md); }
+.py-lg { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg); }
+
+.px-xs { padding-left: var(--spacing-xs); padding-right: var(--spacing-xs); }
+.px-sm { padding-left: var(--spacing-sm); padding-right: var(--spacing-sm); }
+.px-md { padding-left: var(--spacing-md); padding-right: var(--spacing-md); }
+.px-lg { padding-left: var(--spacing-lg); padding-right: var(--spacing-lg); }
+
+/* ======================================
+   Button Styles
+   ====================================== */
+.btn, 
+.cta-button,
+button[type="submit"] {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-medium);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: var(--text-sm);
+}
+
+.btn:hover, 
+.cta-button:hover,
+button[type="submit"]:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-light);
+}
+
+.btn-accent {
+    background-color: var(--accent-color);
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-light);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* ======================================
+   Form Elements
+   ====================================== */
+.form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-medium);
+    color: var(--text-color);
+}
+
+input, 
+select, 
+textarea {
+    width: 100%;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--neutral-darker);
+    border-radius: var(--radius-sm);
+    background-color: var(--white);
+    transition: border-color var(--transition-fast);
+}
+
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1);
+}
+
+input::placeholder, 
+textarea::placeholder {
+    color: var(--text-lighter);
+}
+
+/* ======================================
+   Card Styles
+   ====================================== */
+.card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-body {
+    padding: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-text {
+    color: var(--text-light);
+}
+
+/* ======================================
+   Arc-Inspired Design Elements
+   ====================================== */
+.arc-divider {
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+}
+
+.arc-divider::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    border-radius: 50%;
+    background-color: inherit;
+}
+
+.arc-divider-top::before {
+    top: 0;
+    transform: translateY(-50%);
+}
+
+.arc-divider-bottom::before {
+    bottom: 0;
+    transform: translateY(50%);
+}
+
+.arc-border {
+    border-radius: 100px 100px 0 0;
+}
+
+.circle-frame {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* ======================================
+   Responsive Media Queries
+   ====================================== */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: var(--text-5xl);
+    }
+    
+    h2 {
+        font-size: var(--text-4xl);
+    }
+    
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -1,0 +1,8 @@
+pages:
+  # Configure GitHub Pages settings
+  build_type: workflow
+  enforce_https: true
+  # Custom domain configuration
+  custom_domain: arcvantage-design.com
+  # Disable Jekyll processing
+  jekyll_enabled: false
