@@ -419,6 +419,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize touch interactions after DOM is loaded
     setTimeout(initializeTouchInteractions, 100);
     
+    // Initialize performance optimizations
+    initPerformanceOptimizations();
+    
     // Add animation to arc elements on mousemove for interactive effect
     if (heroSection) {
         heroSection.addEventListener('mousemove', function(e) {
@@ -734,6 +737,170 @@ document.addEventListener('DOMContentLoaded', function() {
         
         modals.forEach(modal => {
             // Add responsive classes
+            modal.classList.add('modal-responsive');
+        });
+    }
+    
+    /**
+     * Initialize performance optimizations
+     */
+    function initPerformanceOptimizations() {
+        // Preload critical resources
+        preloadCriticalResources();
+        
+        // Initialize image optimization
+        optimizeImages();
+        
+        // Setup performance monitoring
+        setupPerformanceMonitoring();
+        
+        // Initialize resource hints
+        addResourceHints();
+        
+        // Optimize animations for performance
+        optimizeAnimations();
+        
+        // Initialize responsive features
+        initializeResponsiveFeatures();
+    }
+    
+    /**
+     * Preload critical resources for better performance
+     */
+    function preloadCriticalResources() {
+        // Preload hero background image
+        const heroImage = new Image();
+        heroImage.src = 'images/hero/hero-background.jpg';
+        
+        // Preload critical project images
+        const criticalImages = [
+            'images/projects/project1-main.jpg',
+            'images/projects/project2-main.jpg',
+            'images/projects/project3-main.jpg'
+        ];
+        
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+        
+        // Preload data files
+        if ('fetch' in window) {
+            fetch('data/projects.json').catch(() => {});
+            fetch('data/services.json').catch(() => {});
+            fetch('data/blog-posts.json').catch(() => {});
+        }
+    }
+    
+    /**
+     * Optimize images for better performance
+     */
+    function optimizeImages() {
+        const images = document.querySelectorAll('img');
+        
+        images.forEach(img => {
+            // Add intersection observer for lazy loading
+            if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+            }
+            
+            // Add decode attribute for better performance
+            img.setAttribute('decoding', 'async');
+            
+            // Optimize image rendering
+            img.style.imageRendering = 'auto';
+            
+            // Add error handling
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                console.warn('Failed to load image:', this.src);
+            });
+        });
+    }
+    
+    /**
+     * Setup performance monitoring
+     */
+    function setupPerformanceMonitoring() {
+        // Monitor page load performance
+        if ('performance' in window && 'getEntriesByType' in performance) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const navigation = performance.getEntriesByType('navigation')[0];
+                    if (navigation) {
+                        const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+                        console.log(`Page load time: ${loadTime}ms`);
+                        
+                        // Log slow loading if over 3 seconds
+                        if (loadTime > 3000) {
+                            console.warn('Page load time exceeds 3 seconds');
+                        }
+                    }
+                }, 0);
+            });
+        }
+        
+        // Monitor largest contentful paint
+        if ('PerformanceObserver' in window) {
+            try {
+                const observer = new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    const lastEntry = entries[entries.length - 1];
+                    console.log('LCP:', lastEntry.startTime);
+                });
+                observer.observe({ entryTypes: ['largest-contentful-paint'] });
+            } catch (e) {
+                // Silently fail if not supported
+            }
+        }
+    }
+    
+    /**
+     * Add resource hints for better performance
+     */
+    function addResourceHints() {
+        const head = document.head;
+        
+        // DNS prefetch for external resources
+        const dnsPrefetch = document.createElement('link');
+        dnsPrefetch.rel = 'dns-prefetch';
+        dnsPrefetch.href = '//fonts.googleapis.com';
+        head.appendChild(dnsPrefetch);
+        
+        // Preconnect to font resources
+        const preconnect = document.createElement('link');
+        preconnect.rel = 'preconnect';
+        preconnect.href = 'https://fonts.gstatic.com';
+        preconnect.crossOrigin = 'anonymous';
+        head.appendChild(preconnect);
+    }
+    
+    /**
+     * Optimize animations for better performance
+     */
+    function optimizeAnimations() {
+        // Use CSS transforms instead of changing layout properties
+        const animatedElements = document.querySelectorAll('.arc-element, .hero-content');
+        
+        animatedElements.forEach(element => {
+            // Enable hardware acceleration
+            element.style.willChange = 'transform';
+            element.style.transform = 'translateZ(0)';
+        });
+        
+        // Reduce motion for users who prefer it
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--transition-fast', '0s');
+            document.documentElement.style.setProperty('--transition-normal', '0s');
+            document.documentElement.style.setProperty('--transition-slow', '0s');
+            
+            // Disable parallax effects
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.removeEventListener('mousemove', () => {});
+            }
+        }
+    } classes
             modal.classList.add('modal-responsive');
             
             // Handle modal positioning on mobile

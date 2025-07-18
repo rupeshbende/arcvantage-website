@@ -563,6 +563,250 @@ textarea::placeholder {
 }
 
 /* ======================================
+   Performance Optimizations & Loading States
+   ====================================== */
+
+/* Lazy Loading & Skeleton Screens */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lazy-load.loading {
+    opacity: 0.5;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+.lazy-load.error {
+    opacity: 1;
+    filter: grayscale(100%);
+}
+
+.image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--neutral-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.skeleton-loader {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--neutral-color) 25%, 
+        var(--neutral-dark) 50%, 
+        var(--neutral-color) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+.error-placeholder {
+    color: var(--text-lighter);
+    font-size: var(--text-sm);
+    text-align: center;
+    padding: var(--spacing-sm);
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Loading states for dynamic content */
+.loading-state {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-state::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Content loading skeleton for text */
+.text-skeleton {
+    background: var(--neutral-dark);
+    border-radius: var(--radius-sm);
+    animation: skeleton-loading 1.5s infinite;
+}
+
+.text-skeleton.line {
+    height: 1em;
+    margin-bottom: 0.5em;
+}
+
+.text-skeleton.line.short {
+    width: 60%;
+}
+
+.text-skeleton.line.medium {
+    width: 80%;
+}
+
+.text-skeleton.line.long {
+    width: 100%;
+}
+
+/* Performance optimized animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+}
+
+.scale-in {
+    animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Optimized transitions for better performance */
+.smooth-transition {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+/* Loading spinner for dynamic content */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neutral-darker);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+}
+
+.loading-spinner.large {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Content loading states */
+.content-loading {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.content-loading .loading-message {
+    color: var(--text-light);
+    font-size: var(--text-sm);
+}
+
+/* Progressive image enhancement */
+.progressive-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.progressive-image img {
+    transition: filter 0.3s ease;
+}
+
+.progressive-image.loading img {
+    filter: blur(5px);
+}
+
+.progressive-image.loaded img {
+    filter: none;
+}
+
+/* Optimized grid loading */
+.projects-grid.loading .project-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.projects-grid.masonry-loaded .project-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.projects-grid.masonry-loaded .project-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======================================
    Card Styles
    ====================================== */
 .card {

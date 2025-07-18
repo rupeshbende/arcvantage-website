@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentCategory = 'all';
     let searchQuery = '';
     
+    // Show loading state initially
+    showBlogLoadingState();
+    
     // Initialize the blog system
     initBlogSystem();
     
@@ -433,4 +436,57 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Make closeBlogModal available globally
     window.closeBlogModal = closeBlogModal;
+    
+    /**
+     * Show loading state for blog section
+     */
+    function showBlogLoadingState() {
+        if (!blogGrid) return;
+        
+        blogGrid.innerHTML = `
+            <div class="content-loading">
+                <div class="loading-spinner large"></div>
+                <div class="loading-message">Loading blog posts...</div>
+            </div>
+        `;
+        
+        // Add skeleton cards for better UX
+        setTimeout(() => {
+            if (blogGrid.querySelector('.content-loading')) {
+                blogGrid.innerHTML = '';
+                for (let i = 0; i < 6; i++) {
+                    const skeletonCard = createSkeletonBlogCard();
+                    blogGrid.appendChild(skeletonCard);
+                }
+            }
+        }, 500);
+    }
+    
+    /**
+     * Create skeleton blog card for loading state
+     * @returns {HTMLElement} Skeleton blog card element
+     */
+    function createSkeletonBlogCard() {
+        const skeletonElement = document.createElement('div');
+        skeletonElement.className = 'blog-post skeleton-card';
+        
+        skeletonElement.innerHTML = `
+            <div class="blog-card">
+                <div class="blog-image">
+                    <div class="skeleton-loader"></div>
+                </div>
+                <div class="blog-content">
+                    <div class="text-skeleton line long"></div>
+                    <div class="text-skeleton line medium"></div>
+                    <div class="text-skeleton line short"></div>
+                    <div class="blog-meta">
+                        <div class="text-skeleton line short"></div>
+                        <div class="text-skeleton line short"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        return skeletonElement;
+    }
 });

@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let projects = [];
     let currentFilter = 'all';
     
+    // Show initial loading state
+    showProjectsLoadingState();
+    
     // Initialize the projects gallery
     initProjectsGallery();
     
@@ -62,8 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {Array} projectsToRender - Array of project objects to render
      */
     function renderProjects(projectsToRender) {
-        // Clear existing projects
+        // Clear existing projects and loading states
         projectsGrid.innerHTML = '';
+        projectsGrid.classList.remove('loading');
         
         if (projectsToRender.length === 0) {
             projectsGrid.innerHTML = '<p class="no-results">No projects found matching your criteria.</p>';
@@ -75,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const projectElement = createProjectElement(project);
             projectsGrid.appendChild(projectElement);
         });
+        
+        // Initialize lazy loading for images
+        initLazyLoading();
         
         // Initialize masonry layout after images are loaded
         initMasonryLayout();
@@ -98,7 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
         projectElement.innerHTML = `
             <div class="project-card">
                 <div class="project-image">
-                    <img src="${imagePath}" alt="${project.title}" loading="lazy">
+                    <img data-src="${imagePath}" alt="${project.title}" class="lazy-load" loading="lazy">
+                    <div class="image-placeholder">
+                        <div class="skeleton-loader"></div>
+                    </div>
                     <div class="project-overlay">
                         <div class="project-category">${project.category}</div>
                         <button class="view-project-btn" aria-label="View project details">
@@ -428,4 +438,116 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize responsive layout
     handleResponsiveLayout();
+    
+    /**
+     * Show loading state for projects section
+     */
+    function showProjectsLoadingState() {
+        if (!projectsGrid) return;
+        
+        projectsGrid.classList.add('loading');
+        projectsGrid.innerHTML = `
+            <div class="content-loading">
+                <div class="loading-spinner large"></div>
+                <div class="loading-message">Loading projects...</div>
+            </div>
+        `;
+        
+        // Add skeleton cards for better UX after a short delay
+        setTimeout(() => {
+            if (projectsGrid.querySelector('.content-loading')) {
+                projectsGrid.innerHTML = '';
+                for (let i = 0; i < 6; i++) {
+                    const skeletonCard = createSkeletonProjectCard();
+                    projectsGrid.appendChild(skeletonCard);
+                }
+            }
+        }, 500);
+    }
+    
+    /**
+     * Create skeleton project card for loading state
+     * @returns {HTMLElement} Skeleton project card element
+     */
+    function createSkeletonProjectCard() {
+        const skeletonElement = document.createElement('div');
+        skeletonElement.className = 'project-item skeleton-card';
+        
+        skeletonElement.innerHTML = `
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="skeleton-loader"></div>
+                </div>
+                <div class="project-info">
+                    <div class="text-skeleton line long"></div>
+                    <div class="text-skeleton line medium"></div>
+                    <div class="text-skeleton line short"></div>
+                    <div class="project-meta">
+                        <div class="text-skeleton line short"></div>
+                        <div class="text-skeleton line short"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        return skeletonElement;
+    }
+    
+    /**
+     * Initialize lazy loading for images using Intersection Observer
+     */
+    function initLazyLoading() {
+        const lazyImages = document.querySelectorAll('.lazy-load');
+        
+        // Check if Intersection Observer is supported
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const placeholder = img.nextElementSibling;
+                        
+                        // Load the image
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy-load');
+                        img.classList.add('loading');
+                        
+                        // Handle image load success
+                        img.addEventListener('load', () => {
+                            img.classList.remove('loading');
+                            img.classList.add('loaded');
+                            if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                                placeholder.style.display = 'none';
+                            }
+                        });
+                        
+                        // Handle image load error
+                        img.addEventListener('error', () => {
+                            img.classList.remove('loading');
+                            img.classList.add('error');
+                            img.src = '/images/projects/placeholder.jpg';
+                            if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                                placeholder.innerHTML = '<div class="error-placeholder">Image not available</div>';
+                            }
+                        });
+                        
+                        // Stop observing this image
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                // Load images when they're 100px away from viewport
+                rootMargin: '100px 0px',
+                threshold: 0.01
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback for browsers without Intersection Observer
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy-load');
+            });
+        }
+    }
 });
