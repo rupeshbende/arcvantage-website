@@ -79,7 +79,7 @@
   - _Requirements: 10.1, 10.2, 10.3, 10.4_
   - Commit to github
 
-- [-] 12. Implement accessibility features and cross-browser compatibility
+- [x] 12. Implement accessibility features and cross-browser compatibility
   - Add ARIA labels and semantic HTML for screen reader compatibility
   - Implement keyboard navigation support for all interactive elements
   - Code alt text for all images and proper heading hierarchy
@@ -87,7 +87,7 @@
   - _Requirements: 9.4, 10.4_
   - Commit to github
 
-- [ ] 13. Set up GitHub Pages deployment configuration
+- [-] 13. Set up GitHub Pages deployment configuration
   - Create repository structure compatible with GitHub Pages requirements
   - Configure automatic deployment settings for main branch
   - Test deployment process and verify site functionality on GitHub Pages
