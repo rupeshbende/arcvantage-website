@@ -16,35 +16,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header with Navigation -->
-    <header id="header">
+    <header id="header" role="banner">
         <div class="container">
             <div class="logo">
-                <a href="#hero">ArcVantage Design Studios</a>
+                <a href="#hero" aria-label="ArcVantage Design Studios - Go to homepage">ArcVantage Design Studios</a>
             </div>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="#hero" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            <nav id="main-nav" role="navigation" aria-label="Main navigation">
+                <ul role="menubar">
+                    <li role="none"><a href="#hero" class="active" role="menuitem" aria-current="page">Home</a></li>
+                    <li role="none"><a href="#about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+                    <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#blog" role="menuitem">Blog</a></li>
+                    <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-toggle">
-                <div class="hamburger-icon">
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="main-nav">
+                <div class="hamburger-icon" aria-hidden="true">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-            </div>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="section hero-section">
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section">
         <div class="hero-background"></div>
         <div class="hero-overlay"></div>
         <div class="container">
@@ -61,32 +66,32 @@
             </div>
         </div>
         <!-- Arc-inspired decorative elements -->
-        <div class="arc-decorator arc-decorator-1"></div>
-        <div class="arc-decorator arc-decorator-2"></div>
+        <div class="arc-decorator arc-decorator-1" aria-hidden="true"></div>
+        <div class="arc-decorator arc-decorator-2" aria-hidden="true"></div>
         
         <!-- Semi-circle decorative elements -->
-        <div class="semi-circle semi-circle-1"></div>
-        <div class="semi-circle semi-circle-2"></div>
+        <div class="semi-circle semi-circle-1" aria-hidden="true"></div>
+        <div class="semi-circle semi-circle-2" aria-hidden="true"></div>
         
         <!-- Floating arc elements with animations -->
-        <div class="arc-element arc-1"></div>
-        <div class="arc-element arc-2"></div>
-        <div class="arc-element arc-3"></div>
-        <div class="arc-element arc-4"></div>
-        <div class="arc-element arc-5"></div>
+        <div class="arc-element arc-1" aria-hidden="true"></div>
+        <div class="arc-element arc-2" aria-hidden="true"></div>
+        <div class="arc-element arc-3" aria-hidden="true"></div>
+        <div class="arc-element arc-4" aria-hidden="true"></div>
+        <div class="arc-element arc-5" aria-hidden="true"></div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section about-section" aria-labelledby="about-heading">
         <div class="container">
             <div class="section-header">
-                <h2>About ArcVantage Design Studios</h2>
+                <h2 id="about-heading">About ArcVantage Design Studios</h2>
                 <p>Our mission and design philosophy</p>
             </div>
             
             <!-- Arc-inspired decorative elements -->
-            <div class="about-arc-decorator about-arc-1"></div>
-            <div class="about-arc-decorator about-arc-2"></div>
+            <div class="about-arc-decorator about-arc-1" aria-hidden="true"></div>
+            <div class="about-arc-decorator about-arc-2" aria-hidden="true"></div>
             
             <div class="about-content">
                 <div class="about-text">
@@ -164,7 +169,7 @@
                     <div class="team-members">
                         <div class="team-member">
                             <div class="member-photo">
-                                <div class="circle-frame"></div>
+                                <div class="circle-frame" role="img" aria-label="Photo of Alexandra Rivers, Principal Architect"></div>
                             </div>
                             <h4>Alexandra Rivers</h4>
                             <p>Principal Architect</p>
@@ -174,7 +179,7 @@
                         </div>
                         <div class="team-member">
                             <div class="member-photo">
-                                <div class="circle-frame"></div>
+                                <div class="circle-frame" role="img" aria-label="Photo of Marcus Chen, Design Director"></div>
                             </div>
                             <h4>Marcus Chen</h4>
                             <p>Design Director</p>
@@ -184,7 +189,7 @@
                         </div>
                         <div class="team-member">
                             <div class="member-photo">
-                                <div class="circle-frame"></div>
+                                <div class="circle-frame" role="img" aria-label="Photo of Sophia Patel, Sustainability Expert"></div>
                             </div>
                             <h4>Sophia Patel</h4>
                             <p>Sustainability Expert</p>
@@ -194,7 +199,7 @@
                         </div>
                         <div class="team-member">
                             <div class="member-photo">
-                                <div class="circle-frame"></div>
+                                <div class="circle-frame" role="img" aria-label="Photo of James Wilson, Project Manager"></div>
                             </div>
                             <h4>James Wilson</h4>
                             <p>Project Manager</p>
@@ -209,39 +214,39 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
+    <section id="projects" class="section projects-section" aria-labelledby="projects-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Our Projects</h2>
+                <h2 id="projects-heading">Our Projects</h2>
                 <p>Innovative arc-integrated living spaces</p>
             </div>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="residential">Residential</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="renovation">Renovation</button>
+            <div class="project-filters" role="tablist" aria-label="Project category filters">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="projects-grid" id="filter-all">All</button>
+                <button class="filter-btn" data-filter="residential" role="tab" aria-selected="false" aria-controls="projects-grid" id="filter-residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial" role="tab" aria-selected="false" aria-controls="projects-grid" id="filter-commercial">Commercial</button>
+                <button class="filter-btn" data-filter="renovation" role="tab" aria-selected="false" aria-controls="projects-grid" id="filter-renovation">Renovation</button>
             </div>
-            <div class="projects-grid loading">
+            <div class="projects-grid loading" id="projects-grid" role="tabpanel" aria-labelledby="filter-all" aria-live="polite">
                 <!-- Project items will be dynamically loaded here -->
             </div>
         </div>
         
         <!-- Arc-inspired decorative elements for projects section -->
-        <div class="arc-decorator projects-arc-1"></div>
-        <div class="arc-decorator projects-arc-2"></div>
+        <div class="arc-decorator projects-arc-1" aria-hidden="true"></div>
+        <div class="arc-decorator projects-arc-2" aria-hidden="true"></div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section services-section">
+    <section id="services" class="section services-section" aria-labelledby="services-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Our Services</h2>
+                <h2 id="services-heading">Our Services</h2>
                 <p>Comprehensive architectural solutions with arc-integrated design</p>
             </div>
             
             <!-- Arc-inspired decorative elements for services section -->
-            <div class="arc-decorator services-arc-1"></div>
-            <div class="arc-decorator services-arc-2"></div>
+            <div class="arc-decorator services-arc-1" aria-hidden="true"></div>
+            <div class="arc-decorator services-arc-2" aria-hidden="true"></div>
             
             <div class="services-grid">
                 <!-- Residential Design -->
@@ -367,15 +372,15 @@
             
             <!-- Service Details Tabs -->
             <div class="service-details-container">
-                <div class="service-tabs">
-                    <button class="service-tab active" data-tab="process">Our Process</button>
-                    <button class="service-tab" data-tab="pricing">Pricing</button>
-                    <button class="service-tab" data-tab="consultation">Consultation</button>
+                <div class="service-tabs" role="tablist" aria-label="Service details">
+                    <button class="service-tab active" data-tab="process" role="tab" aria-selected="true" aria-controls="process-tab" id="tab-process">Our Process</button>
+                    <button class="service-tab" data-tab="pricing" role="tab" aria-selected="false" aria-controls="pricing-tab" id="tab-pricing">Pricing</button>
+                    <button class="service-tab" data-tab="consultation" role="tab" aria-selected="false" aria-controls="consultation-tab" id="tab-consultation">Consultation</button>
                 </div>
                 
                 <div class="service-tab-content">
                     <!-- Process Tab -->
-                    <div class="tab-pane active" id="process-tab">
+                    <div class="tab-pane active" id="process-tab" role="tabpanel" aria-labelledby="tab-process">
                         <div class="process-steps">
                             <div class="process-step">
                                 <div class="step-number">01</div>
@@ -409,7 +414,7 @@
                     </div>
                     
                     <!-- Pricing Tab -->
-                    <div class="tab-pane" id="pricing-tab">
+                    <div class="tab-pane" id="pricing-tab" role="tabpanel" aria-labelledby="tab-pricing">
                         <div class="pricing-tiers">
                             <div class="pricing-tier">
                                 <div class="tier-header">
@@ -473,7 +478,7 @@
                     </div>
                     
                     <!-- Consultation Tab -->
-                    <div class="tab-pane" id="consultation-tab">
+                    <div class="tab-pane" id="consultation-tab" role="tabpanel" aria-labelledby="tab-consultation">
                         <div class="consultation-info">
                             <div class="consultation-description">
                                 <h4>Free Initial Consultation</h4>
@@ -517,39 +522,40 @@
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="section">
+    <section id="blog" class="section" aria-labelledby="blog-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Our Blog</h2>
+                <h2 id="blog-heading">Our Blog</h2>
                 <p>Insights on arc-based design and serene living</p>
             </div>
-            <div class="blog-search">
-                <input type="text" placeholder="Search articles...">
-                <button><i class="fas fa-search"></i></button>
+            <div class="blog-search" role="search">
+                <label for="blog-search-input" class="sr-only">Search blog articles</label>
+                <input type="text" id="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
+                <button type="button" aria-label="Search blog articles"><i class="fas fa-search" aria-hidden="true"></i></button>
             </div>
-            <div class="blog-categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="design-tips">Design Tips</button>
-                <button class="category-btn" data-category="living-spaces">Living Spaces</button>
-                <button class="category-btn" data-category="architecture">Architecture</button>
+            <div class="blog-categories" role="tablist" aria-label="Blog category filters">
+                <button class="category-btn active" data-category="all" role="tab" aria-selected="true" aria-controls="blog-grid" id="blog-filter-all">All</button>
+                <button class="category-btn" data-category="design-tips" role="tab" aria-selected="false" aria-controls="blog-grid" id="blog-filter-design-tips">Design Tips</button>
+                <button class="category-btn" data-category="living-spaces" role="tab" aria-selected="false" aria-controls="blog-grid" id="blog-filter-living-spaces">Living Spaces</button>
+                <button class="category-btn" data-category="architecture" role="tab" aria-selected="false" aria-controls="blog-grid" id="blog-filter-architecture">Architecture</button>
             </div>
-            <div class="blog-grid">
+            <div class="blog-grid" id="blog-grid" role="tabpanel" aria-labelledby="blog-filter-all" aria-live="polite">
                 <!-- Blog posts will be dynamically loaded here -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Contact Us</h2>
+                <h2 id="contact-heading">Contact Us</h2>
                 <p>Get in touch for your next arc-inspired project</p>
             </div>
             
             <!-- Arc-inspired decorative elements for contact section -->
-            <div class="arc-decorator contact-arc-1"></div>
-            <div class="arc-decorator contact-arc-2"></div>
+            <div class="arc-decorator contact-arc-1" aria-hidden="true"></div>
+            <div class="arc-decorator contact-arc-2" aria-hidden="true"></div>
             
             <div class="contact-content">
                 <div class="contact-form-container">
@@ -557,22 +563,25 @@
                         <h3>Send Us a Message</h3>
                         <p>Fill out the form below and we'll get back to you as soon as possible.</p>
                     </div>
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                            <label for="name">Name <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required aria-describedby="name-help">
+                            <div id="name-help" class="sr-only">Enter your full name</div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" placeholder="Your email address" required>
+                            <label for="email">Email <span class="required" aria-label="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Your email address" required aria-describedby="email-help">
+                            <div id="email-help" class="sr-only">Enter a valid email address</div>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Your phone number (optional)">
+                            <input type="tel" id="phone" name="phone" placeholder="Your phone number (optional)" aria-describedby="phone-help">
+                            <div id="phone-help" class="sr-only">Phone number is optional</div>
                         </div>
                         <div class="form-group">
-                            <label for="projectType">Project Type <span class="required">*</span></label>
-                            <select id="projectType" name="projectType" required>
+                            <label for="projectType">Project Type <span class="required" aria-label="required">*</span></label>
+                            <select id="projectType" name="projectType" required aria-describedby="project-help">
                                 <option value="">Select a project type</option>
                                 <option value="residential">Residential Design</option>
                                 <option value="commercial">Commercial Architecture</option>
@@ -580,19 +589,23 @@
                                 <option value="consultation">Consultation</option>
                                 <option value="other">Other</option>
                             </select>
+                            <div id="project-help" class="sr-only">Choose the type of project you need help with</div>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project and how we can help" required></textarea>
+                            <label for="message">Message <span class="required" aria-label="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project and how we can help" required aria-describedby="message-help"></textarea>
+                            <div id="message-help" class="sr-only">Describe your project and how we can help you</div>
                         </div>
                         <div class="form-privacy">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy">I agree to the <a href="#">privacy policy</a> and consent to being contacted about my inquiry.</label>
+                            <input type="checkbox" id="privacy" name="privacy" required aria-describedby="privacy-help">
+                            <label for="privacy">I agree to the <a href="#" aria-label="View privacy policy">privacy policy</a> and consent to being contacted about my inquiry.</label>
+                            <div id="privacy-help" class="sr-only">You must agree to the privacy policy to submit the form</div>
                         </div>
-                        <button type="submit" class="submit-btn">
+                        <button type="submit" class="submit-btn" aria-describedby="submit-help">
                             <span class="btn-text">Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
+                        <div id="submit-help" class="sr-only">Submit the contact form to send your message</div>
                     </form>
                 </div>
                 <div class="contact-info">
@@ -645,8 +658,10 @@
         </div>
     </section>
 
+    </main>
+    
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -680,6 +695,7 @@
     </footer>
 
     <!-- JavaScript Files -->
+    <script src="js/accessibility.js"></script>
     <script src="js/image-optimization.js"></script>
     <script src="js/main.js"></script>
     <script src="js/projects.js"></script>

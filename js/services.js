@@ -57,7 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Add focus accessibility
+            // Add keyboard navigation and accessibility
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `View details for ${card.querySelector('h3').textContent} service`);
+            
             card.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -177,17 +181,25 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function setupTabSwitching() {
         serviceTabs.forEach(tab => {
+            // Add ARIA attributes for accessibility
+            tab.setAttribute('role', 'tab');
+            tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
+            
             tab.addEventListener('click', function() {
                 // If already active, do nothing
                 if (this.classList.contains('active')) {
                     return;
                 }
                 
-                // Remove active class from all tabs
-                serviceTabs.forEach(t => t.classList.remove('active'));
+                // Remove active class from all tabs and update ARIA
+                serviceTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
                 
-                // Add active class to clicked tab
+                // Add active class to clicked tab and update ARIA
                 this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
                 
                 // Get tab target
                 const tabTarget = this.getAttribute('data-tab');
@@ -230,6 +242,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Add ripple effect to tab
                 createRippleEffect(this, event);
+            });
+            
+            // Add keyboard navigation support
+            tab.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const currentIndex = Array.from(serviceTabs).indexOf(this);
+                    let nextIndex;
+                    
+                    if (e.key === 'ArrowLeft') {
+                        nextIndex = currentIndex > 0 ? currentIndex - 1 : serviceTabs.length - 1;
+                    } else {
+                        nextIndex = currentIndex < serviceTabs.length - 1 ? currentIndex + 1 : 0;
+                    }
+                    
+                    serviceTabs[nextIndex].focus();
+                }
             });
         });
     }

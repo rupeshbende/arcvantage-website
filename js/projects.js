@@ -133,10 +133,31 @@ document.addEventListener('DOMContentLoaded', function() {
             openProjectModal(project);
         });
         
-        // Also make the whole card clickable
-        projectElement.querySelector('.project-card').addEventListener('click', (e) => {
+        // Add keyboard navigation support for the view button
+        projectElement.querySelector('.view-project-btn').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openProjectModal(project);
+            }
+        });
+        
+        // Make the whole card clickable and keyboard accessible
+        const projectCard = projectElement.querySelector('.project-card');
+        projectCard.setAttribute('tabindex', '0');
+        projectCard.setAttribute('role', 'button');
+        projectCard.setAttribute('aria-label', `View details for ${project.title} project`);
+        
+        projectCard.addEventListener('click', (e) => {
             // Don't trigger if clicking on the button (it has its own handler)
             if (!e.target.closest('.view-project-btn')) {
+                openProjectModal(project);
+            }
+        });
+        
+        // Add keyboard navigation for the project card
+        projectCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
                 openProjectModal(project);
             }
         });
@@ -165,9 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupFilterButtons() {
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Update active button and ARIA attributes
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
                 button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
                 
                 // Get filter value
                 const filterValue = button.getAttribute('data-filter');
@@ -175,6 +200,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Filter projects
                 filterProjects(filterValue);
+            });
+            
+            // Add keyboard navigation support
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const currentIndex = Array.from(filterButtons).indexOf(button);
+                    let nextIndex;
+                    
+                    if (e.key === 'ArrowLeft') {
+                        nextIndex = currentIndex > 0 ? currentIndex - 1 : filterButtons.length - 1;
+                    } else {
+                        nextIndex = currentIndex < filterButtons.length - 1 ? currentIndex + 1 : 0;
+                    }
+                    
+                    filterButtons[nextIndex].focus();
+                }
             });
         });
     }

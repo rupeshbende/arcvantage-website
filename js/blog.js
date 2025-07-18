@@ -130,9 +130,30 @@ document.addEventListener('DOMContentLoaded', function() {
             openBlogModal(post);
         });
         
-        // Also make the whole card clickable except for the button (it has its own handler)
-        postElement.querySelector('.blog-card').addEventListener('click', (e) => {
+        // Add keyboard navigation support for the read more button
+        postElement.querySelector('.read-more-btn').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openBlogModal(post);
+            }
+        });
+        
+        // Make the whole card clickable and keyboard accessible
+        const blogCard = postElement.querySelector('.blog-card');
+        blogCard.setAttribute('tabindex', '0');
+        blogCard.setAttribute('role', 'button');
+        blogCard.setAttribute('aria-label', `Read full article: ${post.title}`);
+        
+        blogCard.addEventListener('click', (e) => {
             if (!e.target.closest('.read-more-btn')) {
+                openBlogModal(post);
+            }
+        });
+        
+        // Add keyboard navigation for the blog card
+        blogCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
                 openBlogModal(post);
             }
         });
@@ -213,9 +234,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Update active button
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Update active button and ARIA attributes
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
                 button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
                 
                 // Get category value
                 currentCategory = button.getAttribute('data-category');
@@ -225,6 +250,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Add ripple effect to button
                 createRippleEffect(button);
+            });
+            
+            // Add keyboard navigation support
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const currentIndex = Array.from(categoryButtons).indexOf(button);
+                    let nextIndex;
+                    
+                    if (e.key === 'ArrowLeft') {
+                        nextIndex = currentIndex > 0 ? currentIndex - 1 : categoryButtons.length - 1;
+                    } else {
+                        nextIndex = currentIndex < categoryButtons.length - 1 ? currentIndex + 1 : 0;
+                    }
+                    
+                    categoryButtons[nextIndex].focus();
+                }
             });
         });
     }

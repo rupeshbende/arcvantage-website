@@ -19,14 +19,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load services data
     loadServicesData();
     
+    // Initialize service tabs with keyboard navigation
+    initializeServiceTabs();
+    
+    // Initialize project and blog filter keyboard navigation
+    initializeFilterKeyboardNavigation();
+    
     // Mobile menu toggle functionality
     if (mobileMenuToggle && mainNav) {
         mobileMenuToggle.addEventListener('click', function() {
+            const isExpanded = mainNav.classList.contains('active');
             mainNav.classList.toggle('active');
             mobileMenuToggle.classList.toggle('active');
             
+            // Update ARIA attributes for accessibility
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            
             // Prevent body scrolling when mobile menu is open
             document.body.classList.toggle('menu-open');
+            
+            // Focus management for accessibility
+            if (!isExpanded) {
+                // Menu is opening - focus first menu item
+                const firstMenuItem = mainNav.querySelector('a');
+                if (firstMenuItem) {
+                    setTimeout(() => firstMenuItem.focus(), 100);
+                }
+            }
+        });
+        
+        // Keyboard navigation for mobile menu toggle
+        mobileMenuToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Close mobile menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
+                mobileMenuToggle.focus();
+            }
         });
     }
     
@@ -66,18 +104,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (mainNav && mainNav.classList.contains('active')) {
                         mainNav.classList.remove('active');
                         mobileMenuToggle.classList.remove('active');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
                         document.body.classList.remove('menu-open');
                     }
                     
-                    // Update active class on navigation links
-                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    // Update active class on navigation links and ARIA attributes
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                        navLink.removeAttribute('aria-current');
+                    });
                     
                     // Find and activate the corresponding nav link
                     const correspondingNavLink = document.querySelector(`#main-nav a[href="${targetId}"]`);
                     if (correspondingNavLink) {
                         correspondingNavLink.classList.add('active');
+                        correspondingNavLink.setAttribute('aria-current', 'page');
                     }
+                    
+                    // Focus the target section for screen readers
+                    targetElement.setAttribute('tabindex', '-1');
+                    targetElement.focus();
+                    setTimeout(() => {
+                        targetElement.removeAttribute('tabindex');
+                    }, 1000);
                 }, delay);
+            }
+        });
+        
+        // Add keyboard navigation support for all scroll links
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
             }
         });
     });
@@ -651,6 +709,165 @@ document.addEventListener('DOMContentLoaded', function() {
             ctaButton.className = 'cta-button';
             ctaButton.textContent = 'Book Consultation';
             ctaContainer.appendChild(ctaButton);
+        }
+    }
+    
+    /**
+     * Initialize service tabs with keyboard navigation and accessibility
+     */
+    function initializeServiceTabs() {
+        const tabButtons = document.querySelectorAll('.service-tab');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        if (tabButtons.length === 0) return;
+        
+        // Add keyboard navigation to tabs
+        tabButtons.forEach((tab, index) => {
+            tab.addEventListener('click', function() {
+                activateTab(this, index);
+            });
+            
+            tab.addEventListener('keydown', function(e) {
+                let targetIndex = index;
+                
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        targetIndex = index < tabButtons.length - 1 ? index + 1 : 0;
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        targetIndex = index > 0 ? index - 1 : tabButtons.length - 1;
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        targetIndex = 0;
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        targetIndex = tabButtons.length - 1;
+                        break;
+                    case 'Enter':
+                    case ' ':
+                        e.preventDefault();
+                        activateTab(this, index);
+                        return;
+                    default:
+                        return;
+                }
+                
+                tabButtons[targetIndex].focus();
+                activateTab(tabButtons[targetIndex], targetIndex);
+            });
+        });
+        
+        function activateTab(activeTab, activeIndex) {
+            // Update tab buttons
+            tabButtons.forEach((tab, index) => {
+                const isActive = index === activeIndex;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', isActive);
+                tab.setAttribute('tabindex', isActive ? '0' : '-1');
+            });
+            
+            // Update tab panels
+            tabPanes.forEach((pane, index) => {
+                const isActive = index === activeIndex;
+                pane.classList.toggle('active', isActive);
+                pane.setAttribute('aria-hidden', !isActive);
+                
+                if (isActive) {
+                    pane.setAttribute('aria-labelledby', activeTab.id);
+                }
+            });
+            
+            // Announce tab change to screen readers
+            if (window.announceToScreenReader) {
+                window.announceToScreenReader(`${activeTab.textContent} tab selected`);
+            }
+        }
+        
+        // Initialize first tab as active and focusable
+        if (tabButtons.length > 0) {
+            tabButtons.forEach((tab, index) => {
+                tab.setAttribute('tabindex', index === 0 ? '0' : '-1');
+            });
+        }
+    }
+    
+    /**
+     * Initialize keyboard navigation for project and blog filters
+     */
+    function initializeFilterKeyboardNavigation() {
+        // Project filters
+        const projectFilters = document.querySelectorAll('.project-filters .filter-btn');
+        initializeFilterGroup(projectFilters, 'projects-grid');
+        
+        // Blog category filters
+        const blogFilters = document.querySelectorAll('.blog-categories .category-btn');
+        initializeFilterGroup(blogFilters, 'blog-grid');
+        
+        function initializeFilterGroup(filters, targetGridId) {
+            if (filters.length === 0) return;
+            
+            filters.forEach((filter, index) => {
+                // Set initial tabindex
+                filter.setAttribute('tabindex', index === 0 ? '0' : '-1');
+                
+                filter.addEventListener('keydown', function(e) {
+                    let targetIndex = index;
+                    
+                    switch(e.key) {
+                        case 'ArrowRight':
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            targetIndex = index < filters.length - 1 ? index + 1 : 0;
+                            break;
+                        case 'ArrowLeft':
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            targetIndex = index > 0 ? index - 1 : filters.length - 1;
+                            break;
+                        case 'Home':
+                            e.preventDefault();
+                            targetIndex = 0;
+                            break;
+                        case 'End':
+                            e.preventDefault();
+                            targetIndex = filters.length - 1;
+                            break;
+                        case 'Enter':
+                        case ' ':
+                            e.preventDefault();
+                            this.click();
+                            return;
+                        default:
+                            return;
+                    }
+                    
+                    // Update tabindex and focus
+                    filters.forEach((f, i) => {
+                        f.setAttribute('tabindex', i === targetIndex ? '0' : '-1');
+                    });
+                    
+                    filters[targetIndex].focus();
+                });
+                
+                // Update ARIA attributes when filter is activated
+                filter.addEventListener('click', function() {
+                    filters.forEach(f => {
+                        f.setAttribute('aria-selected', 'false');
+                    });
+                    this.setAttribute('aria-selected', 'true');
+                    
+                    // Announce filter change to screen readers
+                    if (window.announceToScreenReader) {
+                        window.announceToScreenReader(`${this.textContent} filter selected`);
+                    }
+                });
+            });
         }
     }
 });   
