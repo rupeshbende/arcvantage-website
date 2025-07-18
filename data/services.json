@@ -1,0 +1,167 @@
+{
+  "services": [
+    {
+      "id": "residential",
+      "title": "Residential Design",
+      "icon": "home",
+      "shortDescription": "Creating harmonious living spaces with innovative arc integration.",
+      "features": [
+        "Custom home design with arc elements",
+        "Renovation and remodeling",
+        "Multi-family residential projects",
+        "Sustainable and eco-friendly solutions"
+      ],
+      "arcIntegration": "Our residential designs incorporate arcs in ceiling treatments, doorways, and interior walls to create a sense of flow and openness that transforms ordinary living spaces into serene environments."
+    },
+    {
+      "id": "commercial",
+      "title": "Commercial Architecture",
+      "icon": "building",
+      "shortDescription": "Designing functional and inspiring commercial spaces with arc elements.",
+      "features": [
+        "Office and workspace design",
+        "Retail and hospitality spaces",
+        "Corporate headquarters",
+        "Wellness and healthcare facilities"
+      ],
+      "arcIntegration": "We bring the calming influence of arc-based design to commercial environments, creating workspaces that enhance productivity and retail spaces that engage customers through thoughtful architectural flow."
+    },
+    {
+      "id": "interior",
+      "title": "Interior Design",
+      "icon": "pencil-ruler",
+      "shortDescription": "Enhancing interiors with arc-inspired elements for serene environments.",
+      "features": [
+        "Custom furniture and fixtures",
+        "Material and color selection",
+        "Lighting design with arc elements",
+        "Space planning and optimization"
+      ],
+      "arcIntegration": "Our interior design approach uses curved elements, circular motifs, and arc-inspired fixtures to create cohesive spaces that feel both elegant and naturally comfortable."
+    },
+    {
+      "id": "consultation",
+      "title": "Consultation",
+      "icon": "drafting-compass",
+      "shortDescription": "Expert advice on incorporating arc design into existing spaces.",
+      "features": [
+        "Design concept development",
+        "Feasibility studies",
+        "Arc integration assessment",
+        "Project planning and budgeting"
+      ],
+      "arcIntegration": "Our consultation services help you identify opportunities to incorporate arc elements into your existing spaces, creating transformation through thoughtful architectural interventions."
+    },
+    {
+      "id": "landscape",
+      "title": "Landscape Architecture",
+      "icon": "tree",
+      "shortDescription": "Creating outdoor spaces with flowing arc-inspired designs.",
+      "features": [
+        "Garden and landscape planning",
+        "Outdoor living spaces",
+        "Water feature design",
+        "Sustainable landscaping"
+      ],
+      "arcIntegration": "We extend our arc design philosophy to outdoor environments, using curved pathways, circular gardens, and arc-shaped structures to create harmonious connections between architecture and nature."
+    },
+    {
+      "id": "sustainable",
+      "title": "Sustainable Design",
+      "icon": "leaf",
+      "shortDescription": "Eco-friendly architecture with arc elements for natural efficiency.",
+      "features": [
+        "Energy-efficient building design",
+        "Passive solar architecture",
+        "Sustainable material selection",
+        "LEED certification consulting"
+      ],
+      "arcIntegration": "Our sustainable designs leverage arc forms to maximize natural light, improve air circulation, and create energy-efficient spaces that work in harmony with the environment."
+    }
+  ],
+  "process": [
+    {
+      "step": "01",
+      "title": "Discovery",
+      "description": "We begin with a thorough consultation to understand your vision, needs, and how arc-based design can enhance your space."
+    },
+    {
+      "step": "02",
+      "title": "Concept Development",
+      "description": "Our team creates preliminary designs that integrate arc elements to achieve your functional and aesthetic goals."
+    },
+    {
+      "step": "03",
+      "title": "Design Refinement",
+      "description": "We refine the concept based on your feedback, developing detailed plans that showcase the arc integration."
+    },
+    {
+      "step": "04",
+      "title": "Implementation",
+      "description": "Our team oversees the execution of the design, ensuring that every arc element is perfectly realized."
+    }
+  ],
+  "pricing": [
+    {
+      "tier": "Essential",
+      "price": "Starting at $5,000",
+      "featured": false,
+      "features": [
+        "Initial consultation",
+        "Basic arc integration concepts",
+        "Preliminary design sketches",
+        "One revision round"
+      ]
+    },
+    {
+      "tier": "Premium",
+      "price": "Starting at $12,000",
+      "featured": true,
+      "features": [
+        "Comprehensive consultation",
+        "Advanced arc design integration",
+        "3D renderings and visualizations",
+        "Three revision rounds",
+        "Material and finish recommendations"
+      ]
+    },
+    {
+      "tier": "Signature",
+      "price": "Custom Quote",
+      "featured": false,
+      "features": [
+        "Elite design partnership",
+        "Comprehensive arc integration",
+        "Full project management",
+        "Unlimited revisions",
+        "Custom furniture design",
+        "Ongoing support"
+      ]
+    }
+  ],
+  "consultation": {
+    "title": "Free Initial Consultation",
+    "description": "We offer a complimentary 30-minute consultation to discuss your project needs and how our arc-integrated design approach can transform your space. During this session, we'll explore your vision, answer questions, and provide initial guidance on the potential of arc elements in your project.",
+    "steps": [
+      {
+        "icon": "comments",
+        "title": "Discovery Call",
+        "description": "A brief discussion to understand your project goals and requirements."
+      },
+      {
+        "icon": "lightbulb",
+        "title": "Initial Concepts",
+        "description": "We'll share preliminary ideas for incorporating arc elements into your space."
+      },
+      {
+        "icon": "file-alt",
+        "title": "Proposal",
+        "description": "If we're a good fit, we'll provide a detailed proposal outlining next steps."
+      }
+    ],
+    "cta": {
+      "title": "Ready to Transform Your Space?",
+      "description": "Schedule your free consultation today and discover how arc-integrated design can enhance your project."
+    }
+  }
+}

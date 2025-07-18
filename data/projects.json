@@ -5,22 +5,88 @@
       "title": "Arc Haven Residence",
       "category": "residential",
       "description": "A modern family home featuring arc-integrated living spaces that maximize natural light.",
-      "fullDescription": "This residential project showcases our signature arc-based design philosophy, creating flowing spaces that connect seamlessly with the natural environment. The central living area features a dramatic curved ceiling that draws the eye upward while allowing natural light to cascade throughout the space.",
+      "fullDescription": "This residential project showcases our signature arc-based design philosophy, creating flowing spaces that connect seamlessly with the natural environment. The central living area features a dramatic curved ceiling that draws the eye upward while allowing natural light to cascade throughout the space.\n\nThe client requested a home that would feel both spacious and intimate, with special attention to the way light moves through the space throughout the day. Our solution was to incorporate a series of gentle arcs in the ceiling that reflect light in different ways as the sun moves across the sky.\n\nThe open floor plan is anchored by curved walls that guide movement through the space while maintaining visual connections between different functional areas. Large arc-shaped windows frame views of the surrounding landscape, bringing the outdoors in and enhancing the sense of serenity.",
       "images": ["project1-main.jpg", "project1-interior.jpg", "project1-detail.jpg"],
       "completionDate": "2024-03-15",
       "location": "Lakeside, CA",
-      "features": ["Arc-integrated ceiling", "Natural lighting optimization", "Open concept living spaces"]
+      "features": ["Arc-integrated ceiling", "Natural lighting optimization", "Open concept living spaces", "Curved walls", "Arc-shaped windows"]
     },
     {
       "id": "project-2",
       "title": "Serenity Commercial Plaza",
       "category": "commercial",
       "description": "A commercial space designed with arc elements to create a calming work environment.",
-      "fullDescription": "This commercial project reimagines the traditional office space by incorporating gentle arcs throughout the design. From the reception area to meeting rooms, curved walls and ceilings create a sense of flow and reduce stress in the workplace.",
+      "fullDescription": "This commercial project reimagines the traditional office space by incorporating gentle arcs throughout the design. From the reception area to meeting rooms, curved walls and ceilings create a sense of flow and reduce stress in the workplace.\n\nResearch shows that environments with curved architectural elements can reduce stress and promote creativity. We applied this principle throughout the Serenity Commercial Plaza, creating a workspace that supports employee wellbeing while maintaining functionality.\n\nThe central atrium features a dramatic spiral staircase with curved railings that serves as both a practical element and a sculptural centerpiece. Private offices and meeting rooms are designed with curved corners and arc-shaped doorways, softening transitions between spaces and creating a more harmonious environment.",
       "images": ["project2-main.jpg", "project2-interior.jpg", "project2-detail.jpg"],
       "completionDate": "2023-11-10",
       "location": "Downtown Metro",
-      "features": ["Arc-based partitions", "Curved reception desk", "Flowing workspace layout"]
+      "features": ["Arc-based partitions", "Curved reception desk", "Flowing workspace layout", "Spiral staircase", "Arc-shaped doorways"]
+    },
+    {
+      "id": "project-3",
+      "title": "Curved Horizon Renovation",
+      "category": "renovation",
+      "description": "A complete transformation of a traditional home using arc-based design principles.",
+      "fullDescription": "This renovation project demonstrates how arc-based design principles can transform a conventional rectangular space into a flowing, harmonious environment. The clients had lived in their traditional home for decades but wanted to create a more open, serene living space without moving.\n\nOur solution was to remove several interior walls and replace them with curved partitions that define spaces while maintaining visual connections. The kitchen was completely reimagined with a curved island and arc-shaped overhead lighting that draws the eye through the space.\n\nPerhaps the most dramatic transformation was the master bathroom, where we installed a curved shower enclosure and a freestanding tub positioned to take advantage of the natural light from a new arc-shaped window.",
+      "images": ["project3-main.jpg", "project3-before.jpg", "project3-after.jpg"],
+      "completionDate": "2024-01-22",
+      "location": "Hillcrest Heights, OR",
+      "features": ["Curved partitions", "Arc-shaped lighting", "Curved kitchen island", "Arc-shaped windows", "Curved shower enclosure"]
+    },
+    {
+      "id": "project-4",
+      "title": "Circular Serenity Spa",
+      "category": "commercial",
+      "description": "A wellness center designed around circular and arc motifs to promote relaxation.",
+      "fullDescription": "The Circular Serenity Spa was designed with the explicit goal of creating a space that promotes deep relaxation and rejuvenation. The entire facility is organized around a central circular courtyard that brings natural light into the heart of the building.\n\nTreatment rooms are arranged in an arc pattern around this central space, each with curved walls and ceilings that create a womb-like sense of comfort and safety. The reception area features a dramatic curved desk and flowing water feature that immediately signals to visitors that they are entering a space dedicated to tranquility.\n\nSpecial attention was paid to the acoustic properties of the curved surfaces, ensuring that sound is diffused gently throughout the space rather than creating echoes or amplification.",
+      "images": ["project4-main.jpg", "project4-interior.jpg", "project4-detail.jpg"],
+      "completionDate": "2023-09-05",
+      "location": "Oceanview, CA",
+      "features": ["Circular courtyard", "Arc-arranged rooms", "Curved ceilings", "Flowing water features", "Acoustic optimization"]
+    },
+    {
+      "id": "project-5",
+      "title": "Arc Family Retreat",
+      "category": "residential",
+      "description": "A vacation home designed with interconnected arcs to create a harmonious family space.",
+      "fullDescription": "This vacation home was designed for a multi-generational family who wanted a space where they could gather together while still having private areas for retreat. The solution was a series of interconnected pavilions arranged in an arc formation around a central outdoor living space.\n\nEach pavilion features curved walls and ceilings that create a sense of embrace and protection. The main living pavilion has a dramatic vaulted ceiling with exposed curved beams that draw the eye upward and outward toward the stunning mountain views.\n\nThe connection between indoor and outdoor spaces is seamless, with large arc-shaped sliding doors that can be fully opened to allow the mountain breezes to flow through the home. Materials were selected for their natural qualities and tactile appeal, enhancing the sense of connection to the surrounding landscape.",
+      "images": ["project5-main.jpg", "project5-interior.jpg", "project5-outdoor.jpg"],
+      "completionDate": "2023-07-18",
+      "location": "Mountain View, CO",
+      "features": ["Arc-arranged pavilions", "Curved beams", "Vaulted ceilings", "Arc-shaped doors", "Indoor-outdoor integration"]
+    },
+    {
+      "id": "project-6",
+      "title": "Radius Corporate Headquarters",
+      "category": "commercial",
+      "description": "A corporate headquarters featuring arc-based architecture to inspire innovation.",
+      "fullDescription": "The Radius Corporate Headquarters was designed for a technology company that wanted their physical space to embody their innovative approach to business. The building is organized around a series of concentric arcs that create a variety of collaborative and private work areas.\n\nThe central feature is a dramatic atrium with a curved glass roof that floods the space with natural light. Meeting rooms and collaborative spaces are positioned along the outer arcs, with private offices and focused work areas along the inner arcs.\n\nThe design incorporates advanced acoustic treatments integrated into the curved surfaces, ensuring that the open plan spaces maintain appropriate sound levels for different types of work. The result is a workplace that supports both collaboration and concentration, with the flowing arc-based layout encouraging movement and interaction throughout the day.",
+      "images": ["project6-main.jpg", "project6-interior.jpg", "project6-collaboration.jpg"],
+      "completionDate": "2024-02-28",
+      "location": "Tech Valley, WA",
+      "features": ["Concentric arc layout", "Curved glass atrium", "Integrated acoustic treatments", "Collaborative spaces", "Focus areas"]
+    },
+    {
+      "id": "project-7",
+      "title": "Crescent Moon Residence",
+      "category": "residential",
+      "description": "A luxury home designed in the shape of a crescent moon to maximize views and natural light.",
+      "fullDescription": "The Crescent Moon Residence takes its name from its distinctive crescent-shaped floor plan, designed to embrace the spectacular ocean views while providing privacy from neighboring properties. The curved exterior wall facing the ocean is almost entirely glass, creating a seamless visual connection to the water and sky.\n\nInside, the spaces flow naturally from one to another, with curved walls guiding movement through the home. The kitchen and dining area occupy the center of the crescent, with the living spaces and master suite positioned at either end to maximize privacy and views.\n\nThe roof features a series of curved skylights that track the movement of the sun throughout the day, bringing changing patterns of natural light into the home. At night, carefully positioned lighting highlights the curved surfaces, creating a warm and inviting atmosphere.",
+      "images": ["project7-main.jpg", "project7-interior.jpg", "project7-night.jpg"],
+      "completionDate": "2023-12-10",
+      "location": "Coastal Bluffs, CA",
+      "features": ["Crescent-shaped floor plan", "Curved glass walls", "Flowing interior spaces", "Curved skylights", "Strategic lighting design"]
+    },
+    {
+      "id": "project-8",
+      "title": "Urban Arc Apartments",
+      "category": "residential",
+      "description": "A multi-unit residential building with arc-inspired balconies and common spaces.",
+      "fullDescription": "The Urban Arc Apartments bring our signature arc-based design approach to multi-family housing. Each unit features at least one curved wall and an arc-shaped balcony that provides both outdoor space and architectural interest to the facade.\n\nThe building is organized around a central courtyard with curved walkways and seating areas that encourage interaction among residents. Common spaces include a rooftop garden with curved planters and seating areas, and a community room with a dramatic curved ceiling.\n\nSpecial attention was paid to the acoustic properties of the units, with curved walls and ceilings helping to diffuse sound and create a sense of privacy despite the urban setting. The result is a residential building that stands out in the cityscape while providing comfortable, serene living spaces for its residents.",
+      "images": ["project8-main.jpg", "project8-courtyard.jpg", "project8-interior.jpg"],
+      "completionDate": "2024-04-05",
+      "location": "Metropolitan City, NY",
+      "features": ["Arc-shaped balconies", "Curved interior walls", "Central courtyard", "Rooftop garden", "Acoustic optimization"]
     }
   ]
 }
